@@ -45,7 +45,7 @@ class _HotStarState extends State<HotStar> {
           actions: [
             IconButton(onPressed: () async{
               await inAppWebViewController!.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://www.hotstar.co/in")));
-            }, icon: Icon(Icons.home)),
+            }, icon: const Icon(Icons.home)),
             IconButton(onPressed: () async{
               if(await inAppWebViewController!.canGoBack()) {
                 inAppWebViewController!.goBack();
@@ -64,7 +64,9 @@ class _HotStarState extends State<HotStar> {
         ),
         body: InAppWebView(
           pullToRefreshController: pullToRefreshController,
-          onLoadStop: (controller, url) async {},
+          onLoadStop: (controller, url) async {
+            await pullToRefreshController.endRefreshing();
+          },
           initialUrlRequest: URLRequest(
             url: Uri.parse("https://www.hotstar.com/in"),
           ),

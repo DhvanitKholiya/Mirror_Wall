@@ -57,7 +57,9 @@ class _NetflixState extends State<Netflix> {
       ),
       body: InAppWebView(
         pullToRefreshController: pullToRefreshController,
-        onLoadStop: (controller, url) async {},
+        onLoadStop: (controller, url) async {
+          await pullToRefreshController.endRefreshing();
+        },
         initialUrlRequest: URLRequest(
           url: Uri.parse("https://www.netflix.com/in/"),
         ),

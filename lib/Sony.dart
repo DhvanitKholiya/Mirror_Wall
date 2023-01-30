@@ -56,7 +56,9 @@ class _SonyState extends State<Sony> {
       ),
       body: InAppWebView(
         pullToRefreshController: pullToRefreshController,
-        onLoadStop: (controller, url) async {},
+        onLoadStop: (controller, url) async {
+          await pullToRefreshController.endRefreshing();
+        },
         initialUrlRequest: URLRequest(
           url: Uri.parse("https://www.sonyliv.com/"),
         ),
